@@ -43,7 +43,7 @@ scaffold comparison, repeated-policy measurements, uncertainty, and compute.
 These results establish policy-relative signal under one model and scaffold.
 They do not compare training environments or measure downstream RL utility.
 
-## Roundout budget law
+## Rollout budget law
 
 The [budget law](SIGNAL_BUDGET_LAW.md) derives what a fixed rollout budget buys,
 exactly and without simulation. Expected advantage mass carries no finite-G
