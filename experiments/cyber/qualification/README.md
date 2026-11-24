@@ -55,6 +55,15 @@ same algebra shows verifier false negatives act as a contraction toward one
 half, so a bad verifier hides 37 percent of the signal at p = 0.035 and reports
 33 percent more at p = 0.75.
 
+## Verifier levers
+
+`verifier_levers.py` puts the environment and the verifier on one scale. Cutting
+false negatives from 38 to 20 percent at a 0.035 base rate is worth a 1.29 times
+higher base rate, so the two fixes trade near one for one. False positives go
+the other way: ten percent lifts a 0.035 environment to 1.47 times the density
+of a clean 2.3 times leader, and the contaminated arm wins the screen. See
+[VERIFIER_LEVERS.md](VERIFIER_LEVERS.md).
+
 ## Development record
 
 The [v1 bakeoff](HISTORICAL_V1_BAKEOFF.md), the original
