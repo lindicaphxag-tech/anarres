@@ -32,7 +32,13 @@ class ContaminationTest(unittest.TestCase):
     def test_a_ten_percent_false_positive_rate_misranks_the_panel(self) -> None:
         row = levers.contamination(0.035, 0.10)
         self.assertEqual(row["misranks"], 1.0)
-        self.assertGreater(row["dirty_over_rival"], 1.4)
+        self.assertAlmostEqual(row["dirty_over_rival"], 1.54, delta=0.01)
+
+    def test_the_comparator_is_the_two_point_three_times_arm(self) -> None:
+        row = levers.contamination(0.035, 0.10)
+        self.assertAlmostEqual(
+            row["clean_rival"], levers.density(0.035 * levers.RIVAL_RATIO), places=12
+        )
 
     def test_two_percent_false_positives_create_a_phantom_one_and_a_half(self) -> None:
         self.assertAlmostEqual(

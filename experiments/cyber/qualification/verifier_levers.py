@@ -24,6 +24,7 @@ import math
 from scipy.stats import beta
 
 BASELINE = 0.035
+RIVAL_RATIO = 2.3
 
 
 def effective_rate(p: float, false_negative: float = 0.0, false_positive: float = 0.0) -> float:
@@ -60,9 +61,10 @@ def lever_price(p: float, before: float, after: float) -> dict[str, float]:
     }
 
 
-def contamination(p: float, false_positive: float, rival: float = 0.0849) -> dict[str, float]:
+def contamination(p: float, false_positive: float, rival: float | None = None) -> dict[str, float]:
     """How a false-positive rate changes the ranking of a weak and a strong arm."""
 
+    rival = p * RIVAL_RATIO if rival is None else rival
     dirty = observed_density(p, false_positive=false_positive)
     clean_rival = density(rival)
     return {
@@ -155,6 +157,8 @@ def main() -> None:
         raise SystemExit("a contaminated verifier did not misrank the panel")
     if ambiguity_row["gap"] < 0.3:
         raise SystemExit("the attribution ambiguity is smaller than claimed")
+    if abs(dirty["clean_rival"] - density(BASELINE * RIVAL_RATIO)) > 1e-12:
+        raise SystemExit("the contamination comparator is not the 2.3 times arm")
     if audit_items(0.38, 0.03) > 4000:
         raise SystemExit("the audit costs more than the panel it protects")
 
