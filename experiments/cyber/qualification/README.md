@@ -55,3 +55,24 @@ scaffold, candidate environments, target, and budget.
 Formal-verification environments have a separate
 [plan and source qualification path](../formal-verification/README.md). Their
 proof-checker results are not pooled with exploit-verifier outcomes.
+
+## Released evidence record
+
+`cybergym_released_evidence.json` states what this workstream has released and
+where it stops. It pins the policy, scaffold, 50-task panel, verifier contract,
+and cost unit, hashes both floor-probe statistics files, and sets
+`task_level.released` to `false` because the 400 per-rollout JSONs stayed on the
+cluster. The published rho, H, and k values appear with
+`recomputed_from_rows: false` so no reader can mistake them for a recomputation.
+
+```bash
+anarres-vulnerability status --evidence experiments/cyber/qualification/cybergym_released_evidence.json
+anarres-vulnerability verify --evidence experiments/cyber/qualification/cybergym_released_evidence.json
+anarres-vulnerability profile --evidence experiments/cyber/qualification/cybergym_released_evidence.json
+```
+
+`verify` recomputes the floor-probe counts from their per-task rows and fails on
+digest drift, count mismatch, pooled scaffolds, or a claim that aggregates came
+from rows. `profile` refuses to export an environment-profile input while task
+rows stay unreleased. The floor probes keep their OpenHands scaffold as a
+separate contract from the custom harness that produced the 50-task sweep.
