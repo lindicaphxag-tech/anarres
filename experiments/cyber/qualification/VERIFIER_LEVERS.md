@@ -27,11 +27,11 @@ cheaper of the two is the one to buy.
 | 0.035 | 1.52 | 3.38 |
 | 0.100 | 1.16 | 1.71 |
 
-At p = 0.035 a ten percent false-positive rate reports 0.1142, which is 1.47
-times the density of a clean environment that is genuinely 2.3 times better. The
-contaminated arm wins the screen. Two percent is enough to manufacture a
-phantom 1.5 times environment, and no amount of extra rollouts makes it
-visible: more data narrows the interval around a biased number.
+At p = 0.035 a ten percent false-positive rate reports 0.1142, which is 1.54
+times the density of the same 2.3 times arm measured cleanly. The contaminated
+arm wins the screen. Two percent is enough to manufacture a phantom 1.5 times
+environment, and no amount of extra rollouts makes it visible: more data narrows
+the interval around a biased number.
 
 ## The observation cannot attribute itself
 
