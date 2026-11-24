@@ -92,7 +92,8 @@ verifier qualities cannot be ranked by rho without this correction.
 ```bash
 cd experiments/cyber/qualification
 python3 signal_budget_theory.py
-python3 signal_budget_theory.py --write design/signal_budget_v1.json
+mkdir -p design && python3 signal_budget_theory.py --write design/signal_budget_v1.json
+python3 -m unittest test_signal_budget_theory
 ```
 
 The script rebuilds H and coverage from the published k vector, checks identity
