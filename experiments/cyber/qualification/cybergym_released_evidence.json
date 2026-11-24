@@ -1,0 +1,122 @@
+{
+  "schema_version": "anarres.cybergym-released-evidence.v1",
+  "record_id": "cybergym-released-measurement-v1",
+  "status": "released-aggregates-only",
+  "policy": {
+    "kind": "language-model",
+    "name": "feyospace/feyospace-v1.1-small",
+    "revision": "pending-full-digest",
+    "parameters": "28B",
+    "precision": "bf16"
+  },
+  "scaffold": {
+    "kind": "agent-harness",
+    "agent": "anarres custom exploit harness (cyber_exploit_harness.py)",
+    "max_model_len": 4096,
+    "serving": "vLLM 0.28.0, tensor-parallel 2, gpu-memory-utilization 0.45"
+  },
+  "panel": {
+    "tasks_total": 50,
+    "rollouts_per_task": 8,
+    "rollouts_total": 400,
+    "tasks_uri": "SCAFFOLD_REEVAL_RESULTS.md"
+  },
+  "verifier": {
+    "contract": "strict end-to-end exploit against an isolated target; server submission recorded",
+    "outcome_unit": "per-rollout binary success",
+    "calibration": "no verifier calibration released"
+  },
+  "task_level": {
+    "released": false,
+    "reason": "the 400 per-rollout JSONs live on the cluster at /tmp/srivatsavad_cyber_g8_results/rollouts/ and were never committed; .gitignore excludes /results/",
+    "needed_by": "experiments/cyber/analysis/compute_rho_h.py",
+    "consequence": "aggregates cannot be recomputed from released rows"
+  },
+  "published_aggregates": {
+    "source": "CYBER_QUALIFICATION_SUMMARY.md",
+    "recomputed_from_rows": false,
+    "rho_per_million_output_tokens": {
+      "value": 22.42,
+      "lower": 12.28,
+      "upper": 33.85,
+      "interval": "95% bootstrap"
+    },
+    "rho_per_million_total_tokens": 1.65,
+    "H": {
+      "value": 0.2518,
+      "lower": 0.14,
+      "upper": 0.3712,
+      "interval": "95% bootstrap"
+    },
+    "k_distribution": {
+      "0": 37,
+      "1": 12,
+      "2": 1
+    },
+    "success_rollouts": 14,
+    "signal_groups": 13,
+    "output_tokens": 1223456,
+    "advantage_mass": 27.43
+  },
+  "floor_probes": [
+    {
+      "policy_name": "nvidia/Nemotron-Terminal-8B",
+      "policy_revision": "bb1413",
+      "scaffold": "OpenHands 0.33",
+      "design": "48 tasks x 16 rollouts planned, early stop after 273 rollouts",
+      "decision": "EXTERNAL-TARGET-ONLY",
+      "artifact": {
+        "uri": "floor_probe_stats.json",
+        "sha256": "sha256:1e3f53dce7cc4c3c2827d5d7208801f6567fe7da5db8660f7e09e615bab883ff",
+        "size_bytes": 4051
+      }
+    },
+    {
+      "policy_name": "feyospace/feyospace-v1.1-small",
+      "policy_revision": "pending-full-digest",
+      "scaffold": "OpenHands 0.33",
+      "design": "48 tasks x 16 rollouts planned, early stop after 249 rollouts",
+      "decision": "EXTERNAL-TARGET-ONLY",
+      "artifact": {
+        "uri": "floor_probe_feyospace_stats.json",
+        "sha256": "sha256:444684078e1b92c1f76c2dfce15e10adc5f7c54ef602dda5f364d44d721908cb",
+        "size_bytes": 3467
+      }
+    }
+  ],
+  "classification": {
+    "source_qualification_available": true,
+    "policy_measurement": "released as aggregates only",
+    "environment_comparison": "absent",
+    "training_authorized": false
+  },
+  "artifacts": [
+    {
+      "uri": "floor_probe_stats.json",
+      "sha256": "sha256:1e3f53dce7cc4c3c2827d5d7208801f6567fe7da5db8660f7e09e615bab883ff",
+      "size_bytes": 4051
+    },
+    {
+      "uri": "floor_probe_feyospace_stats.json",
+      "sha256": "sha256:444684078e1b92c1f76c2dfce15e10adc5f7c54ef602dda5f364d44d721908cb",
+      "size_bytes": 3467
+    },
+    {
+      "uri": "CYBER_QUALIFICATION_SUMMARY.md",
+      "sha256": "sha256:d51f35a5b5749ff653ce4fd1e775a7778a62e953df66a508a90a6bcab0dfae9e",
+      "size_bytes": 13362
+    }
+  ],
+  "source": {
+    "uri": "https://github.com/anarres-organization/anarres/tree/main/experiments/cyber/qualification",
+    "revision": "5b4b8f29ccb990012531140be9aca106210fae8b",
+    "license": "Apache-2.0"
+  },
+  "measurement_contract": {
+    "kind": "rollout-sweep",
+    "id": "cybergym-g8-strict-exploit",
+    "revision": "1",
+    "repetitions": 8,
+    "cost_unit": "generated output tokens"
+  }
+}
