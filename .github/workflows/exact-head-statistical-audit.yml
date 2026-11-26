@@ -1,0 +1,47 @@
+name: Exact-head statistical reproduction
+on:
+  push:
+    branches: [research/exact-head-statistics-audit-20261126]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - pr: 82
+            sha: 584efdc1414203c1ce430e5813c0e05e32cf105a
+            directory: experiments/mathematics/verifier-reliability-pilot
+            command: python scripts/recompute_exact_mcnemar.py && python scripts/detectable_difference.py && python scripts/resolution_plan.py && python -m unittest discover -s scripts -p test_run_level_analysis.py
+          - pr: 95
+            sha: 9442d0d8acbdabf012dfd3a5111c876b25db09fb
+            directory: experiments/cyber/qualification
+            command: python -m unittest test_selection_law test_screening_budget test_screen
+          - pr: 96
+            sha: 5435728c98bb651e9aed54a048fd9dc35690140f
+            directory: experiments/cyber/qualification
+            command: python information_floor.py && python -m unittest test_information_floor
+          - pr: 97
+            sha: eb72091b4b6679616ab4090043d0367a7b6ff6ba
+            directory: experiments/cyber/qualification
+            command: python -m unittest test_environment_ranking test_sequential_design
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify exact revision and run targeted CPU tests
+        working-directory: ${{ matrix.directory }}
+        env:
+          EXPECTED_SHA: ${{ matrix.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          python --version
+          ${{ matrix.command }}
