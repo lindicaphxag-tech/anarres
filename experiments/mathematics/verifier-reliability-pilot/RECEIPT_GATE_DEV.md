@@ -1,0 +1,7 @@
+# Prospective receipt gate (development only)
+
+This additive branch does not change the frozen feasibility protocol or its historical aggregates. It contains no newly executed model training. The gate verifies a caller-supplied, independently precommitted SHA-256 of contract.json; that file pins immutable revision identifiers, nine training seeds, evaluation seed, nine perturbation seeds, the verifier contract, ordered 300-item panel, configuration and extractor artifact hashes. Eighteen receipts then reference local checkpoints and ordered per-item correctness records, with exact byte hashes. Duplicate run IDs, repeated artifact paths, wrong seeds, altered files, incomplete receipts, and mismatched panel order are rejected. Output is nine run-pair rows for the existing run-level analysis (JSON; convert to its CSV schema if required).
+
+Run `python scripts/receipt_gate.py BUNDLE --commitment SHA256` and `python -m unittest discover -s scripts -p test_receipt_gate.py`. The test uses artificial fixtures exclusively.
+
+This gate checks integrity and internal consistency, not independent execution, time of commitment, correctness of the scoring extractor, authenticity of receipts, or historical provenance. A content hash cannot prove that a training run occurred. The historical provenance remains missing. The full upstream repository test suite has not been run; review and formatting are required before proposing integration.
