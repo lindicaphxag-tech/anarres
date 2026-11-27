@@ -1,0 +1,130 @@
+{
+  "reps": 1000,
+  "budget_rollouts": 480,
+  "scenarios": {
+    "null": {
+      "information_per_cost": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "policies": {
+        "uniform": {
+          "reject": 11,
+          "rate": 0.011,
+          "mean_cost": 479.048
+        },
+        "adaptive": {
+          "reject": 25,
+          "rate": 0.025,
+          "mean_cost": 474.568
+        },
+        "posterior": {
+          "reject": 24,
+          "rate": 0.024,
+          "mean_cost": 476.28
+        },
+        "oracle": {
+          "reject": 20,
+          "rate": 0.02,
+          "mean_cost": 475.392
+        }
+      }
+    },
+    "cheap_signal": {
+      "information_per_cost": [
+        0.05287224532658503,
+        0.0013432239449291481,
+        0.0
+      ],
+      "policies": {
+        "uniform": {
+          "reject": 374,
+          "rate": 0.374,
+          "mean_cost": 436.256
+        },
+        "adaptive": {
+          "reject": 1000,
+          "rate": 1.0,
+          "mean_cost": 95.048
+        },
+        "posterior": {
+          "reject": 974,
+          "rate": 0.974,
+          "mean_cost": 264.136
+        },
+        "oracle": {
+          "reject": 1000,
+          "rate": 1.0,
+          "mean_cost": 93.352
+        }
+      }
+    },
+    "costly_signal": {
+      "information_per_cost": [
+        0.0,
+        0.0013432239449291481,
+        0.028095561269095157
+      ],
+      "policies": {
+        "uniform": {
+          "reject": 918,
+          "rate": 0.918,
+          "mean_cost": 403.96
+        },
+        "adaptive": {
+          "reject": 778,
+          "rate": 0.778,
+          "mean_cost": 419.776
+        },
+        "posterior": {
+          "reject": 986,
+          "rate": 0.986,
+          "mean_cost": 334.792
+        },
+        "oracle": {
+          "reject": 1000,
+          "rate": 1.0,
+          "mean_cost": 194.808
+        }
+      }
+    },
+    "mixed": {
+      "information_per_cost": [
+        0.014652401154433177,
+        0.03162445373453234,
+        0.015463929391590385
+      ],
+      "policies": {
+        "uniform": {
+          "reject": 970,
+          "rate": 0.97,
+          "mean_cost": 287.216
+        },
+        "adaptive": {
+          "reject": 969,
+          "rate": 0.969,
+          "mean_cost": 221.64
+        },
+        "posterior": {
+          "reject": 984,
+          "rate": 0.984,
+          "mean_cost": 264.328
+        },
+        "oracle": {
+          "reject": 1000,
+          "rate": 1.0,
+          "mean_cost": 156.32
+        }
+      }
+    }
+  },
+  "small_oracle": {
+    "power": "269235829/409600000",
+    "power_float": 0.6573140356445313,
+    "states": 514,
+    "first_action": 0,
+    "greedy_power": "1181/2000",
+    "greedy_power_float": 0.5905
+  }
+}
