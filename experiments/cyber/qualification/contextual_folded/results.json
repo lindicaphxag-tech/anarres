@@ -1,0 +1,59 @@
+{
+  "seed": 20261127,
+  "reps": 3000,
+  "max_tasks": 160,
+  "results": [
+    {
+      "scenario": "null",
+      "sign": {
+        "reject": 80,
+        "rejection_rate": 0.02666666666666667,
+        "mean_tasks": 156.84666666666666
+      },
+      "contextual": {
+        "reject": 95,
+        "rejection_rate": 0.03166666666666667,
+        "mean_tasks": 156.416
+      }
+    },
+    {
+      "scenario": "modest",
+      "sign": {
+        "reject": 2997,
+        "rejection_rate": 0.999,
+        "mean_tasks": 39.498666666666665
+      },
+      "contextual": {
+        "reject": 2998,
+        "rejection_rate": 0.9993333333333333,
+        "mean_tasks": 41.186
+      }
+    },
+    {
+      "scenario": "strong",
+      "sign": {
+        "reject": 3000,
+        "rejection_rate": 1.0,
+        "mean_tasks": 10.882
+      },
+      "contextual": {
+        "reject": 3000,
+        "rejection_rate": 1.0,
+        "mean_tasks": 11.993333333333334
+      }
+    },
+    {
+      "scenario": "gap_cancel",
+      "sign": {
+        "reject": 83,
+        "rejection_rate": 0.027666666666666666,
+        "mean_tasks": 156.603
+      },
+      "contextual": {
+        "reject": 3000,
+        "rejection_rate": 1.0,
+        "mean_tasks": 23.389333333333333
+      }
+    }
+  ]
+}
